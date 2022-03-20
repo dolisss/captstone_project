@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: upg-loadme
+  name: upg-loadme
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - image: public.ecr.aws/h7l1t3d9/dolis
+        name: dolis
+        resources: {}
+      tolerations:
+      - key: project
+        value: capstone
+        effect: NoSchedule
+        operator: Equal
+
